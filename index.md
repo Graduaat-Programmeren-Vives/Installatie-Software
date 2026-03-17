@@ -1,12 +1,47 @@
 
- Welkom op mijn GitHub Pages Website
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website met includes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-Dit is een voorbeeld gemaakt in **Markdown**.
+    <!-- HEADER -->
+    <div id="header"></div>
 
-## Over mij
-- Ik hou van C#
-- Ik gebruik Visual Studio Code
-- GitHub Pages is eenvoudig!
+    <div class="container">
 
-### Contact
-Mail: voorbeeld@site.com
+        <!-- SIDEBAR -->
+        <div id="sidebar"></div>
+
+        <!-- INHOUD -->
+        <main id="content"></main>
+    </div>
+
+    <script>
+        // HEADER laden
+        fetch("header.html")
+            .then(r => r.text())
+            .then(t => document.getElementById("header").innerHTML = t);
+
+        // SIDEBAR laden
+        fetch("sidebar.html")
+            .then(r => r.text())
+            .then(t => document.getElementById("sidebar").innerHTML = t);
+
+        // INHOUD dynamisch laden op basis van URL
+        function loadPage(page) {
+            fetch(page)
+                .then(r => r.text())
+                .then(t => document.getElementById("content").innerHTML = t);
+        }
+
+        // Standaardpagina
+        loadPage("home.html");
+    </script>
+
+</body>
+</html>
